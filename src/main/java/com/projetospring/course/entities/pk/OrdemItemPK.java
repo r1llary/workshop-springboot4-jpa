@@ -4,7 +4,6 @@ import com.projetospring.course.entities.Order;
 import com.projetospring.course.entities.Product;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 import java.io.Serializable;
@@ -18,10 +17,14 @@ public class OrdemItemPK implements Serializable {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
-    private Product product;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    private Product product;
+
+    public OrdemItemPK() {
+    }
+
     public Order getOrder() {
         return order;
     }
@@ -40,9 +43,13 @@ public class OrdemItemPK implements Serializable {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         OrdemItemPK that = (OrdemItemPK) o;
-        return Objects.equals(order, that.order) && Objects.equals(product, that.product);
+
+        return Objects.equals(order, that.order)
+                && Objects.equals(product, that.product);
     }
 
     @Override
