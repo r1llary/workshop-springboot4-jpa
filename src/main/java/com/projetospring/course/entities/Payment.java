@@ -1,5 +1,6 @@
 package com.projetospring.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 
@@ -19,6 +20,7 @@ public class Payment implements Serializable {
 
     @OneToOne
     @MapsId
+    @JsonIgnore
     private Order order;
 
     public Payment (){
